@@ -28,9 +28,13 @@
 }
 
 - (IBAction)updateTotal:(id)sender {
-    // Set the labels to sample strings
-    self.tipLabel.text = @"$20.00";
-    self.totalLabel.text = @"$120.00";
+    double tipPercentages[] = {0.10, 0.15, 0.20};
+    double selectedTipPercentage = tipPercentages[self.tipSegCtrl.selectedSegmentIndex];
+    double billValue = [self.billField.text doubleValue];
+    double tipValue = billValue * selectedTipPercentage;
+    
+    self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tipValue];
+    self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", tipValue + billValue];
 }
 
 /*
